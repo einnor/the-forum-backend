@@ -1,9 +1,30 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
+const CategoryModel = (sequelize, DataTypes) => {
   const Category = sequelize.define(
     'Category',
     {
-      name: DataTypes.STRING,
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {},
   );
@@ -12,3 +33,5 @@ module.exports = (sequelize, DataTypes) => {
   };
   return Category;
 };
+
+export default CategoryModel;
