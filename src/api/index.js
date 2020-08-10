@@ -1,17 +1,17 @@
 import { Router } from 'express';
 
-// import category from './category';
-import user from './user';
-// import account from './account';
-// import post from './post';
-// import comment from './comment';
+import categories from './categories/routes';
+// import users from './users/routes';
+// import accounts from './accounts/routes';
+// import posts from './posts/routes';
+// import comments from './comments/routes';
 
 const router = new Router();
 
-// router.use('/api/categories', category);
-router.use('/api/users', user);
-// router.use('/api/accounts', account);
-// router.use('/api/posts', post);
-// router.use('/api/comments', comment);
+router.use('/api/categories', categories);
+// router.use('/api/users', users);
+// router.use('/api/accounts', accounts);
+// router.use('/api/posts', posts);
+// router.use('/api/comments', comments);
 
 export default router;
