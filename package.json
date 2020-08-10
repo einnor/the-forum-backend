@@ -1,0 +1,69 @@
+{
+  "name": "the-forum-backend",
+  "version": "1.0.0",
+  "description": "Backend service for The Forum",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node src/app.js",
+    "db:migrate": "node_modules/.bin/babel-node node_modules/.bin/sequelize db:migrate",
+    "db:migrate:undo": "node_modules/.bin/babel-node node_modules/.bin/sequelize db:migrate:undo",
+    "db:migrate:undo:all": "node_modules/.bin/babel-node node_modules/.bin/sequelize db:migrate:undo:all",
+    "db:seed": "node_modules/.bin/babel-node node_modules/.bin/sequelize db:seed:all",
+    "db:seed:undo": "node_modules/.bin/babel-node node_modules/.bin/sequelize db:seed:undo",
+    "db:seed:undo:all": "node_modules/.bin/babel-node node_modules/.bin/sequelize db:seed:undo:all",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "admin-bro": "^2.8.0",
+    "admin-bro-expressjs": "^2.1.1",
+    "admin-bro-sequelizejs": "^0.5.1",
+    "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.27.0",
+    "pg": "^8.2.1",
+    "pg-hstore": "^2.3.3",
+    "query-string": "^6.13.1",
+    "sequelize": "^6.1.0",
+    "sequelize-slugify": "^0.9.1",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/node": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@types/bcrypt": "^3.0.0",
+    "@types/express": "^4.17.6",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/node": "^14.0.13",
+    "@types/sequelize": "^4.28.9",
+    "@types/uuid": "^8.0.0",
+    "@types/validator": "^13.1.0",
+    "dotenv": "^8.2.0",
+    "husky": "^4.2.5",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "sequelize-cli": "^5.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/einnor/the-forum-backend.git"
+  },
+  "keywords": [],
+  "author": "Ronnie Nyaga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/einnor/the-forum-backend/issues"
+  },
+  "homepage": "https://github.com/einnor/the-forum-backend#readme"
+}
