@@ -1,33 +1,19 @@
-import Joi from 'joi';
+const { body, param, header, query } = require('express-validator');
 
-export default {
-  list: {},
-
-  // POST /api/categories
-  save: {
-    params: {},
-    headers: {
-      authorization: Joi.string().required(),
-    },
-  },
-
-  // PUT /api/categories/:id
-  update: {
-    params: {
-      id: Joi.string().required(),
-    },
-    headers: {
-      authorization: Joi.string().required(),
-    },
-  },
-
-  // DELETE /api/categories/:id
-  delete: {
-    params: {
-      id: Joi.string().required(),
-    },
-    headers: {
-      authorization: Joi.string().required(),
-    },
-  },
-};
+export const list = [
+  query('order')
+    .optional()
+    .isString()
+    .isIn(['asc', 'desc'])
+    .withMessage('Order is either invalid or not specified'),
+  query('limit')
+    .optional()
+    .isInt()
+    .toInt()
+    .withMessage('Limit is either invalid or not specified'),
+  query('offset')
+    .optional()
+    .isInt()
+    .toInt()
+    .withMessage('Offset is either invalid or not specified'),
+];

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express from 'express';
 
 import categories from './categories/routes';
 // import users from './users/routes';
@@ -6,12 +6,12 @@ import categories from './categories/routes';
 // import posts from './posts/routes';
 // import comments from './comments/routes';
 
-const router = new Router();
+const router = express.Router();
 
-router.use('/api/categories', categories);
+router.use('/categories', categories);
 // router.use('/api/users', users);
 // router.use('/api/accounts', accounts);
 // router.use('/api/posts', posts);
 // router.use('/api/comments', comments);
 
-export default router;
+module.exports = router;
