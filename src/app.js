@@ -6,11 +6,12 @@ require('dotenv').config();
 
 import { adminBro, router } from './admin';
 import { get } from './config';
+import routes from './api';
+import Api from './lib/Api';
 
 const PORT = get('PORT');
 
 const app = express();
-const api = require('./api');
 
 // Admin Bro Configuration
 app.use(adminBro.options.rootPath, router);
@@ -25,7 +26,10 @@ app.use(express.json());
 app.use(helmet());
 
 // Mount all API routes on /api path
-app.use('/api', api);
+app.use('/api', routes);
+
+// Handle unexpected/uncaught errors
+app.use(Api.handleUncaughtException);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server ready at http://localhost:${PORT}`);
