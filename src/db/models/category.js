@@ -13,6 +13,10 @@ const CategoryModel = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
+      numberOfPosts: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0,
+      },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
