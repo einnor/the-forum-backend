@@ -1,17 +1,54 @@
-'use strict';
-module.exports = (sequelize, DataTypes) => {
+const PostModel = (sequelize, DataTypes) => {
   const Post = sequelize.define(
     'Post',
     {
-      userId: DataTypes.UUID,
-      categoryId: DataTypes.UUID,
-      title: DataTypes.STRING,
-      content: DataTypes.STRING,
+      id: {
+        allowNull: false,
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      userId: {
+        allowNull: false,
+        type: DataTypes.UUID,
+      },
+      categoryId: {
+        allowNull: false,
+        type: DataTypes.UUID,
+      },
+      title: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      content: {
+        allowNull: false,
+        type: DataTypes.STRING,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      deletedAt: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
     },
     {},
   );
   Post.associate = function (models) {
     // associations can be defined here
+    Post.belongs(models.User, {
+      foreignKey: 'userId',
+    });
+    Post.belongs(models.Category, {
+      foreignKey: 'categoryId',
+    });
   };
   return Post;
 };
+
+export default PostModel;
