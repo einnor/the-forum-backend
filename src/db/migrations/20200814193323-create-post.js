@@ -1,36 +1,27 @@
 export default {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Posts', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
       },
-      firstName: {
+      userId: {
+        allowNull: false,
+        type: Sequelize.UUID,
+      },
+      categoryId: {
+        allowNull: false,
+        type: Sequelize.UUID,
+      },
+      title: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      lastName: {
+      content: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      avatar: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      lastLogin: {
-        allowNull: false,
-        type: Sequelize.DATE,
       },
       createdAt: {
         allowNull: false,
@@ -47,6 +38,6 @@ export default {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Posts');
   },
 };

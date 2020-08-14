@@ -5,42 +5,45 @@ const UserModel = (sequelize, DataTypes) => {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
       },
       firstName: {
-        type: Sequelize.STRING,
+        allowNull: false,
+        type: DataTypes.STRING,
       },
       lastName: {
-        type: Sequelize.STRING,
+        allowNull: false,
+        type: DataTypes.STRING,
       },
       email: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
       password: {
-        type: Sequelize.STRING,
-        allowNull: true,
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       avatar: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
+        allowNull: true,
       },
       lastLogin: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
       deletedAt: {
         allowNull: true,
-        type: Sequelize.DATE,
+        type: DataTypes.DATE,
       },
     },
     {},
