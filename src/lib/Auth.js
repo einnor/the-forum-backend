@@ -1,15 +1,13 @@
 import jwt from 'jsonwebtoken';
 
 import { JWT_TOKEN_EXPIRY } from '../config';
+import { get } from '../config';
 
-export const generateToken = async (user, account) => {
-  const role = await account.getRole();
+export const generateToken = async (user) => {
   return jwt.sign(
     {
       id: user.id,
-      accountId: account.id,
       email: user.email,
-      role,
     },
     process.env.JWT_SECRET,
     { expiresIn: JWT_TOKEN_EXPIRY },
@@ -26,7 +24,7 @@ export const getAuthUser = (req) => {
   }
 
   try {
-    return jwt.verify(token, process.env.JWT_SECRET);
+    return jwt.verify(token, get(JWT_SECRET));
   } catch (error) {
     return null;
   }
