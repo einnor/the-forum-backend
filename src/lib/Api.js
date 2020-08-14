@@ -33,6 +33,18 @@ export default class Api {
     }
   }
 
+  static unprocessableEntity(request, response, responseData) {
+    response.statusCode = httpStatus.UNPROCESSABLE_ENTITY;
+
+    if (typeof responseData === 'string') {
+      return response.json({
+        error: responseData,
+      });
+    } else {
+      return response.json(responseData);
+    }
+  }
+
   static handleUncaughtException(error, request, response, next) {
     const errorMessage = error.toString();
 

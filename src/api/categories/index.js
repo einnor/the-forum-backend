@@ -1,5 +1,3 @@
-import httpStatus from 'http-status';
-
 import models from '../../db/models';
 import Api from '../../lib/Api';
 
