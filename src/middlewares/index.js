@@ -1,3 +1,4 @@
 import validateResults from './validateResults';
+import isAuth from './isAuth';
 
-export { validateResults };
+export { validateResults, isAuth };
