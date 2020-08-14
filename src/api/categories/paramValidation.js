@@ -1,4 +1,4 @@
-const { body, param, header, query } = require('express-validator');
+const { query } = require('express-validator');
 
 export const list = [
   query('order')
