@@ -1,5 +1,6 @@
 import models from '../../db/models';
 import Api from '../../lib/Api';
+import { getAuthUser } from '../../lib/Auth';
 
 export const list = async (req, res, next) => {
   const { perPage = 10, page = 1, order = 'desc', categoryId } = req.query;
@@ -29,6 +30,30 @@ export const getPostById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const data = await models.Post.findByPk(id);
+    return res.json({ data });
+  } catch (exception) {
+    return Api.internalError(req, res, exception);
+  }
+};
+
+export const create = async (req, res, next) => {
+  const { title, content, categoryId } = req.params;
+  const { authUser } = req;
+  try {
+    const category = await models.Category.findByPk(categoryId);
+    if (!category) {
+      return Api.unprocessableEntity(
+        req,
+        res,
+        'A category with that id does not exist',
+      );
+    }
+    const data = await models.Post.create({
+      title,
+      content,
+      categoryId,
+      userId: authUser.id,
+    });
     return res.json({ data });
   } catch (exception) {
     return Api.internalError(req, res, exception);
