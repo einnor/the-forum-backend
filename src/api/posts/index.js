@@ -1,6 +1,5 @@
 import models from '../../db/models';
 import Api from '../../lib/Api';
-import { getAuthUser } from '../../lib/Auth';
 
 export const list = async (req, res, next) => {
   const { perPage = 10, page = 1, order = 'desc', categoryId } = req.query;
@@ -16,7 +15,7 @@ export const list = async (req, res, next) => {
     }
     const data = await models.Post.findAndCountAll({
       where: { categoryId },
-      orderBy: [['createdAt', order]],
+      order: [['createdAt', order]],
       limit: perPage,
       offset: page === 1 ? 0 : perPage * (page - 1),
     });
@@ -37,7 +36,7 @@ export const getPostById = async (req, res, next) => {
 };
 
 export const create = async (req, res, next) => {
-  const { title, content, categoryId } = req.params;
+  const { title, content, categoryId } = req.body;
   const { authUser } = req;
   try {
     const category = await models.Category.findByPk(categoryId);
