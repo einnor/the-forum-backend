@@ -46,7 +46,11 @@ const UserModel = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
       },
     },
-    {},
+    {
+      defaultScope: {
+        attributes: { exclude: ['password'] },
+      },
+    },
   );
   User.associate = function (models) {
     // associations can be defined here
