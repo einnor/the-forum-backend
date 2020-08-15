@@ -67,6 +67,5 @@ export const getUserById = [
     .exists()
     .withMessage('ID is missing from params')
     .isUUID()
-    .withMessage('ID should be a uuid')
-    .toInt(),
+    .withMessage('ID should be a uuid'),
 ];

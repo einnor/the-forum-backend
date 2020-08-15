@@ -9,6 +9,14 @@ router
   .route('/')
   .get(isAuth, paramValidation.list, validateResults, methods.list);
 router
+  .route('/:id')
+  .get(
+    isAuth,
+    paramValidation.getUserById,
+    validateResults,
+    methods.getUserById,
+  );
+router
   .route('/sign-up')
   .post(paramValidation.signUp, validateResults, methods.signUp);
 router
