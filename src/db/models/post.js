@@ -41,10 +41,10 @@ const PostModel = (sequelize, DataTypes) => {
   );
   Post.associate = function (models) {
     // associations can be defined here
-    Post.belongs(models.User, {
+    Post.belongsTo(models.User, {
       foreignKey: 'userId',
     });
-    Post.belongs(models.Category, {
+    Post.belongsTo(models.Category, {
       foreignKey: 'categoryId',
     });
   };

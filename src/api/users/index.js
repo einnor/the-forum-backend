@@ -26,7 +26,7 @@ export const signUp = async (req, res, next) => {
     });
 
     const token = await generateToken(user);
-    return { token };
+    return res.json({ token });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }
@@ -34,23 +34,26 @@ export const signUp = async (req, res, next) => {
 
 export const signIn = async (req, res, next) => {
   const { email, password } = req.body;
-  const user = await models.User.findOne({ where: { email } });
 
-  if (!user) {
-    return Api.unprocessableEntity(req, res, 'Invalid credentials.');
+  try {
+    const user = await models.User.findOne({ where: { email } });
+    if (!user) {
+      return Api.unprocessableEntity(req, res, 'Invalid credentials.');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return Api.unprocessableEntity(req, res, 'Invalid credentials.');
+    }
+
+    const token = await generateToken(user);
+
+    await user.update({
+      lastLogin: new Date(),
+    });
+
+    return res.json({ token });
+  } catch (exception) {
+    return Api.internalError(req, res, exception);
   }
-
-  const isPasswordValid = await bcrypt.compare(password, user.password);
-
-  if (!isPasswordValid) {
-    return Api.unprocessableEntity(req, res, 'Invalid credentials.');
-  }
-
-  const token = await generateToken(user);
-
-  await user.update({
-    lastLogin: new Date(),
-  });
-
-  return { token };
 };

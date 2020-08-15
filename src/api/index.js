@@ -9,7 +9,7 @@ import users from './users/routes';
 const router = express.Router();
 
 router.use('/categories', categories);
-router.use('/api/users', users);
+router.use('/users', users);
 // router.use('/api/accounts', accounts);
 // router.use('/api/posts', posts);
 // router.use('/api/comments', comments);

@@ -2,26 +2,49 @@ const { body, param, header, query } = require('express-validator');
 
 export const signUp = [
   body('firstName')
+    .exists()
+    .withMessage('First name is missing from the body')
     .isString()
-    .withMessage('First name is either invalid or not specified'),
+    .withMessage('First name should be a string'),
   body('lastName')
+    .exists()
+    .withMessage('First name is missing from the body')
     .isString()
-    .withMessage('Last name is either invalid or not specified'),
+    .withMessage('Last name should be a string'),
   body('email')
+    .exists()
+    .withMessage('Email is missing from the body')
     .isEmail()
-    .withMessage('Email is either invalid or not specified'),
+    .withMessage('Email is invalid'),
   body('password')
-    .isAlphanumeric()
+    .exists()
+    .withMessage('Password is missing from the body')
     .isLength({ min: 8 })
-    .withMessage('Email is either invalid or not specified'),
+    .withMessage('Password should have a minum length of 8')
+    .matches(
+      new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'),
+    )
+    .withMessage(
+      'Password should containt at least one lowercase character, one upercase character and one special character',
+    ),
 ];
 
 export const signIn = [
   body('email')
+    .exists()
+    .withMessage('Email is missing from the body')
     .isEmail()
-    .withMessage('Email is either invalid or not specified'),
+    .withMessage('Email is invalid'),
   body('password')
-    .isAlphanumeric()
+    .exists()
+    .withMessage('Password is missing from the body')
     .isLength({ min: 8 })
-    .withMessage('Email is either invalid or not specified'),
+    .isLength({ min: 8 })
+    .withMessage('Password should have a minum length of 8')
+    .matches(
+      new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'),
+    )
+    .withMessage(
+      'Password should containt at least one lowercase character, one upercase character and one special character',
+    ),
 ];

@@ -24,7 +24,7 @@ export const getAuthUser = (req) => {
   }
 
   try {
-    return jwt.verify(token, get(JWT_SECRET));
+    return jwt.verify(token, get('JWT_SECRET'));
   } catch (error) {
     return null;
   }
