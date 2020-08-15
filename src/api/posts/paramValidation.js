@@ -23,3 +23,11 @@ export const list = [
     .withMessage('Page should be an integer')
     .toInt(),
 ];
+
+export const getPostById = [
+  param('id')
+    .exists()
+    .withMessage('ID is missing from params')
+    .isUUID()
+    .withMessage('ID should be a uuid'),
+];
