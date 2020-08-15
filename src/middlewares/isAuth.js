@@ -5,7 +5,7 @@ import { getAuthUser } from '../lib/Auth';
 const isAuth = async (req, res, next) => {
   const authUser = getAuthUser(req);
   if (!authUser) {
-    return res.status(status.FORBIDDEN).json({});
+    return res.status(status.UNAUTHORIZED).json({});
   }
 
   // Update last login
