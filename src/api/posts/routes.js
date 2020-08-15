@@ -8,5 +8,13 @@ const router = express.Router();
 router
   .route('/')
   .get(isAuth, paramValidation.list, validateResults, methods.list);
+router
+  .route('/:id')
+  .get(
+    isAuth,
+    paramValidation.getPostById,
+    validateResults,
+    methods.getPostById,
+  );
 
 export default router;
