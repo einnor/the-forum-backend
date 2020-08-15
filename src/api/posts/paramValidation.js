@@ -31,3 +31,21 @@ export const getPostById = [
     .isUUID()
     .withMessage('ID should be a uuid'),
 ];
+
+export const create = [
+  body('categoryId')
+    .exists()
+    .withMessage('CategoryId is missing from the body')
+    .isUUID()
+    .withMessage('CategoryId should be a uuid'),
+  body('title')
+    .exists()
+    .withMessage('Title is missing from the body')
+    .isString()
+    .withMessage('Title should be a string'),
+  body('content')
+    .exists()
+    .withMessage('Content is missing from the body')
+    .isString()
+    .withMessage('Content should be a string'),
+];
