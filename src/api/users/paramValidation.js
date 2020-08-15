@@ -48,3 +48,16 @@ export const signIn = [
       'Password should containt at least one lowercase character, one upercase character and one special character',
     ),
 ];
+
+export const list = [
+  query('perPage')
+    .optional()
+    .isInt()
+    .withMessage('perPage should be an integer')
+    .toInt(),
+  query('page')
+    .optional()
+    .isInt()
+    .withMessage('Page should be an integer')
+    .toInt(),
+];
