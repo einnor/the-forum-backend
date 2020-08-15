@@ -24,3 +24,13 @@ export const list = async (req, res, next) => {
     return Api.internalError(req, res, exception);
   }
 };
+
+export const getPostById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const data = await models.Post.findByPk(id);
+    return res.json({ data });
+  } catch (exception) {
+    return Api.internalError(req, res, exception);
+  }
+};
