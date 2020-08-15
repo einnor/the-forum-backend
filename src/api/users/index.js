@@ -60,7 +60,6 @@ export const signIn = async (req, res, next) => {
 
 export const list = async (req, res, next) => {
   const { perPage = 10, page = 1 } = req.query;
-  console.log(req.query);
   try {
     const data = await models.User.findAndCountAll({
       orderBy: [['createdAt', 'DESC']],

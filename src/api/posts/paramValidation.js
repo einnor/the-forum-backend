@@ -1,11 +1,11 @@
 const { body, param, header, query } = require('express-validator');
 
 export const list = [
-  query('category')
+  query('categoryId')
     .exists()
-    .withMessage('Category is missing from the query')
-    .isString()
-    .withMessage('Category should be a string'),
+    .withMessage('CategoryId is missing from the query')
+    .isUUID()
+    .withMessage('CategoryId should be a uuid'),
   query('order')
     .optional()
     .isString()
