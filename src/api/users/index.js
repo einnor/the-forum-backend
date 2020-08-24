@@ -33,7 +33,8 @@ export const signUp = async (req, res, next) => {
 };
 
 export const signIn = async (req, res, next) => {
-  const { email, password } = req.body;
+  const { user } = req.body;
+  const { email, password } = user;
 
   try {
     const user = await models.User.findOne({ where: { email } });
@@ -52,7 +53,7 @@ export const signIn = async (req, res, next) => {
       lastLogin: new Date(),
     });
 
-    return res.json({ token });
+    return res.json({ token, email });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }

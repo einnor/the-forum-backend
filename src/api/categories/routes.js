@@ -5,8 +5,6 @@ import { validateResults, isAuth } from '../../middlewares';
 
 const router = express.Router();
 
-router
-  .route('/')
-  .get(isAuth, paramValidation.list, validateResults, methods.list);
+router.route('/').get(paramValidation.list, validateResults, methods.list); // TODO add isAuth,
 
 export default router;

@@ -30,12 +30,12 @@ export const signUp = [
 ];
 
 export const signIn = [
-  body('email')
+  body('user.email')
     .exists()
     .withMessage('Email is missing from the body')
     .isEmail()
     .withMessage('Email is invalid'),
-  body('password')
+  body('user.password')
     .exists()
     .withMessage('Password is missing from the body')
     .isLength({ min: 8 })
