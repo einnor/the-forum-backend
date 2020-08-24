@@ -5,7 +5,8 @@ import Api from '../../lib/Api';
 import { generateToken } from '../../lib/Auth';
 
 export const signUp = async (req, res, next) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { user } = req.body;
+  const { firstName, lastName, email, password } = user;
 
   try {
     const userExists = await models.User.findOne({ where: { email } });
@@ -26,7 +27,7 @@ export const signUp = async (req, res, next) => {
     });
 
     const token = await generateToken(user);
-    return res.json({ token });
+    return res.json({ token, email });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }

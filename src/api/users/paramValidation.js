@@ -1,22 +1,22 @@
 const { body, param, header, query } = require('express-validator');
 
 export const signUp = [
-  body('firstName')
+  body('user.firstName')
     .exists()
     .withMessage('First name is missing from the body')
     .isString()
     .withMessage('First name should be a string'),
-  body('lastName')
+  body('user.lastName')
     .exists()
     .withMessage('First name is missing from the body')
     .isString()
     .withMessage('Last name should be a string'),
-  body('email')
+  body('user.email')
     .exists()
     .withMessage('Email is missing from the body')
     .isEmail()
     .withMessage('Email is invalid'),
-  body('password')
+  body('user.password')
     .exists()
     .withMessage('Password is missing from the body')
     .isLength({ min: 8 })

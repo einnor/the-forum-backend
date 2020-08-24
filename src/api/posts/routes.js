@@ -7,7 +7,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(paramValidation.list, validateResults, methods.list) // TODO Add isAuth,
+  .get(isAuth, paramValidation.list, validateResults, methods.list)
   .post(isAuth, paramValidation.create, validateResults, methods.create);
 router
   .route('/:id')
