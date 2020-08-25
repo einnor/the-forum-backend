@@ -78,7 +78,7 @@ export const getUserById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const data = await models.User.findByPk(id);
-    return res.json({ data });
+    return res.json({ user: data });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }
