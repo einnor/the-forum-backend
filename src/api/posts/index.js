@@ -29,14 +29,15 @@ export const getPostById = async (req, res, next) => {
   const { id } = req.params;
   try {
     const data = await models.Post.findByPk(id);
-    return res.json({ data });
+    return res.json({ post: data });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }
 };
 
 export const create = async (req, res, next) => {
-  const { title, content, categoryId } = req.body;
+  const { post } = req.body;
+  const { title, content, categoryId } = post;
   const { authUser } = req;
   try {
     const category = await models.Category.findByPk(categoryId);
@@ -53,7 +54,7 @@ export const create = async (req, res, next) => {
       categoryId,
       userId: authUser.id,
     });
-    return res.json({ data });
+    return res.json({ post: data });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }

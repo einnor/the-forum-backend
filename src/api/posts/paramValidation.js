@@ -33,17 +33,17 @@ export const getPostById = [
 ];
 
 export const create = [
-  body('categoryId')
+  body('post.categoryId')
     .exists()
     .withMessage('CategoryId is missing from the body')
     .isUUID()
     .withMessage('CategoryId should be a uuid'),
-  body('title')
+  body('post.title')
     .exists()
     .withMessage('Title is missing from the body')
     .isString()
     .withMessage('Title should be a string'),
-  body('content')
+  body('post.content')
     .exists()
     .withMessage('Content is missing from the body')
     .isString()

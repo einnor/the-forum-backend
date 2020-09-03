@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import models from '../../db/models';
 import Api from '../../lib/Api';
 import { generateToken } from '../../lib/Auth';
+import { SALT_ROUNDS } from '../../config';
 
 export const signUp = async (req, res, next) => {
   const { user } = req.body;
@@ -22,7 +23,7 @@ export const signUp = async (req, res, next) => {
       firstName,
       lastName,
       email,
-      password,
+      password: await bcrypt.hash(password, SALT_ROUNDS),
       lastLogin: new Date(),
     });
 
