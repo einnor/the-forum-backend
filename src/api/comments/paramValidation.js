@@ -14,11 +14,6 @@ export const create = [
     .withMessage('PostId is missing from the body')
     .isUUID()
     .withMessage('PostId should be a uuid'),
-  body('comment.userId')
-    .exists()
-    .withMessage('UserId is missing from the body')
-    .isUUID()
-    .withMessage('UserId should be a uuid'),
   body('comment.content')
     .exists()
     .withMessage('Content is missing from the body')

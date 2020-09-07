@@ -9,4 +9,8 @@ router
   .route('/')
   .get(isAuth, paramValidation.list, validateResults, methods.list);
 
+router
+  .route('/')
+  .post(isAuth, paramValidation.create, validateResults, methods.create);
+
 export default router;
