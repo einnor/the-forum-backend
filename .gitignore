@@ -64,3 +64,5 @@ typings/
 *.sw?
 
 .DS_Store
+
+pgdata/
