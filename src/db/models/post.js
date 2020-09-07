@@ -43,6 +43,9 @@ const PostModel = (sequelize, DataTypes) => {
     Post.belongsTo(models.Category, {
       foreignKey: 'categoryId',
     });
+    Post.hasMany(models.Comment, {
+      foreignKey: 'postId',
+    });
   };
   return Post;
 };
