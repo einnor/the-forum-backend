@@ -6,6 +6,7 @@ import { get } from '../../config';
 import CategoryModel from './category';
 import UserModel from './user';
 import PostModel from './post';
+import CommentModel from './comment';
 
 const environment = get('NODE_ENV') || 'development';
 const config = require('../config')[environment];
@@ -27,6 +28,7 @@ if (config.use_env_variable) {
 db['Category'] = CategoryModel(sequelize, DataTypes);
 db['User'] = UserModel(sequelize, DataTypes);
 db['Post'] = PostModel(sequelize, DataTypes);
+db['Comment'] = CommentModel(sequelize, DataTypes);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
