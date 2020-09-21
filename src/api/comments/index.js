@@ -4,11 +4,11 @@ import Api from '../../lib/Api';
 export const list = async (req, res, next) => {
   const { postId } = req.query;
   try {
-    const data = await models.Comment.findAll({
+    const data = await models.Comment.findAndCountAll({
       where: { postId },
       order: [['createdAt', 'desc']],
     });
-    return res.json({ comments: data });
+    return res.json({ count: data.count, comments: data.rows });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }

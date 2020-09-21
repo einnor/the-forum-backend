@@ -9,6 +9,9 @@ router
   .route('/')
   .get(isAuth, paramValidation.list, validateResults, methods.list);
 router
+  .route('/me')
+  .get(isAuth, paramValidation.getMe, validateResults, methods.getMe);
+router
   .route('/:id')
   .get(
     isAuth,

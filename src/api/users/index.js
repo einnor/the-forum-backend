@@ -84,3 +84,13 @@ export const getUserById = async (req, res, next) => {
     return Api.internalError(req, res, exception);
   }
 };
+
+export const getMe = async (req, res, next) => {
+  const { authUser } = req;
+  try {
+    const data = await models.User.findByPk(authUser.id);
+    return res.json({ user: data });
+  } catch (exception) {
+    return Api.internalError(req, res, exception);
+  }
+};

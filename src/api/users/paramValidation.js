@@ -69,3 +69,5 @@ export const getUserById = [
     .isUUID()
     .withMessage('ID should be a uuid'),
 ];
+
+export const getMe = [];
