@@ -28,3 +28,11 @@ export const create = [
     .isString()
     .withMessage('Content should be a string'),
 ];
+
+export const deleteCommentById = [
+  param('id')
+    .exists()
+    .withMessage('ID is missing from params')
+    .isUUID()
+    .withMessage('ID should be a uuid'),
+];
