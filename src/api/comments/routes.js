@@ -16,6 +16,12 @@ router
     paramValidation.getCommentById,
     validateResults,
     methods.getCommentById,
+  )
+  .delete(
+    isAuth,
+    paramValidation.deleteCommentById,
+    validateResults,
+    methods.deleteCommentById,
   );
 
 router

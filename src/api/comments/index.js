@@ -51,3 +51,17 @@ export const create = async (req, res, next) => {
     return Api.internalError(req, res, exception);
   }
 };
+
+export const deleteCommentById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const comment = await models.Comment.findByPk(id);
+    if (comment) {
+      comment.destroy();
+    }
+    res.status(201);
+    return res.json({ comment });
+  } catch (exception) {
+    return Api.internalError(req, res, exception);
+  }
+};
