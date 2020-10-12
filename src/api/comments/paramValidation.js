@@ -8,6 +8,14 @@ export const list = [
     .withMessage('PostId should be a uuid'),
 ];
 
+export const getCommentById = [
+  param('id')
+    .exists()
+    .withMessage('ID is missing from params')
+    .isUUID()
+    .withMessage('ID should be a uuid'),
+];
+
 export const create = [
   body('comment.postId')
     .exists()
