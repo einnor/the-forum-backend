@@ -10,6 +10,15 @@ router
   .get(isAuth, paramValidation.list, validateResults, methods.list);
 
 router
+  .route('/:id')
+  .get(
+    isAuth,
+    paramValidation.getCommentById,
+    validateResults,
+    methods.getCommentById,
+  );
+
+router
   .route('/')
   .post(isAuth, paramValidation.create, validateResults, methods.create);
 
