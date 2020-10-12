@@ -14,6 +14,16 @@ export const list = async (req, res, next) => {
   }
 };
 
+export const getCommentById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const data = await models.Comment.findByPk(id);
+    return res.json({ comment: data });
+  } catch (exception) {
+    return Api.internalError(req, res, exception);
+  }
+};
+
 export const create = async (req, res, next) => {
   const { authUser } = req;
   const { comment } = req.body;
