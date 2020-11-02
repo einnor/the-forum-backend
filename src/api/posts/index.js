@@ -57,6 +57,11 @@ export const create = async (req, res, next) => {
       categoryId,
       userId: authUser.id,
     });
+
+    await category.update({
+      numberOfPosts: category.numberOfPosts + 1,
+    });
+
     return res.json({ post: data });
   } catch (exception) {
     return Api.internalError(req, res, exception);
