@@ -2,13 +2,19 @@ import models from '../../db/models';
 import Api from '../../lib/Api';
 
 export const list = async (req, res, next) => {
-  const { postId } = req.query;
+  const { postId, page = 1, perPage = 10 } = req.query;
   try {
     const data = await models.Comment.findAndCountAll({
       where: { postId },
       order: [['createdAt', 'desc']],
+      orderBy: [['createdAt', 'DESC']],
+      limit: perPage,
+      offset: page === 1 ? 0 : perPage * (page - 1),
     });
-    return res.json({ count: data.count, comments: data.rows });
+    return res.json({
+      comments: data.rows,
+      meta: { page, perPage, total: data.count },
+    });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }

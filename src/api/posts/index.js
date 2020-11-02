@@ -19,7 +19,10 @@ export const list = async (req, res, next) => {
       limit: perPage,
       offset: page === 1 ? 0 : perPage * (page - 1),
     });
-    return res.json({ posts: data.rows, count: data.count });
+    return res.json({
+      posts: data.rows,
+      meta: { page, perPage, total: data.count },
+    });
   } catch (exception) {
     return Api.internalError(req, res, exception);
   }
